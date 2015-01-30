@@ -37,7 +37,8 @@ class TaxRequestHandler(object):
             if(responseloaded["rCode"]!=100):
                 continue
             else:
-                taxInfolst.append(str(responseloaded["results"][0]))
+                if(responseloaded["results"]!=None and len(responseloaded["results"])>0):
+                    taxInfolst.append(str(responseloaded["results"][0]))
             if len(taxInfolst) == limit:
                 self.writeToFile(taxInfolst, self.outDir,fileName+str(id))
                 taxInfolst = []
